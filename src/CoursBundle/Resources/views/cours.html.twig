@@ -2,15 +2,15 @@
 
 {% block body %}
     <div class="row">
-        <h1>{{ lesson.name }}</h1>
+        <h1>{{ lesson.name | capitalize }}</h1>
     </div>
     <div class="row">
-        <p class="center">Visualisez la vidéo et répondez au quizz pour valider votre cours.</p>
+        <p class="center">Visualisez la vidéo entièrement pour répondre au quizz et valider votre cours.</p>
     </div>
     <div class="row">
         <!-- API Youtube -->
         <div class="center">
-            <div id="ytplayer"></div>
+            <div id="player"></div>
         </div>
     </div>
     {% if wrong %}
@@ -18,7 +18,7 @@
         <h2>Il y a une erreur !</h2>{% endif %}
     <div class="row">
         <div class="col offset-m3 m6">
-            <div class="card indigo quizz">
+            <div class="card indigo quizz" id="quizz">
                 <div class="card-content                                                                                                                                        ">
                     <span class="card-title">Quizz</span>
                     <!-- Formulaire quizz -->
@@ -38,22 +38,35 @@
 {% endblock %}
 {%  block javascripts %}
 {{ parent() }}
-    <script>
-        // Load the IFrame Player API code asynchronously.
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/player_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    <script src="http://www.youtube.com/player_api"></script>
 
-        // Replace the 'ytplayer' element with an <iframe> and
-        // YouTube player after the API code downloads.
+    <script>
+
+        // create youtube player
         var player;
         function onYouTubePlayerAPIReady() {
-            player = new YT.Player('ytplayer', {
-                height: '360',
+            player = new YT.Player('player', {
                 width: '640',
-                videoId: '{{ lesson.urlytb }}'
+                height: '390',
+                videoId: '{{ lesson.urlytb }}',
+                events: {
+                    onReady: onPlayerReady,
+                    onStateChange: onPlayerStateChange
+                }
             });
         }
+
+        // autoplay video
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        // when video ends
+        function onPlayerStateChange(event) {
+            if(event.data === 0) {
+                document.getElementById('quizz').style.display = 'block';
+            }
+        }
+
     </script>
 {% endblock %}

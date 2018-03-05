@@ -24,3 +24,7 @@ h1, h2 {
     color: white;
     text-decoration: underline;
 }
+
+.quizz {
+    display: none;
+}
