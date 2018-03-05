@@ -17,13 +17,17 @@ class HomeController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         //Récupération du nombre de Cours
-        $nbLessons = count($em->getRepository(Lesson::class)->findAll());
+        $lessons = $em->getRepository(Lesson::class)->findAll();
+
+        $nbLessons = count($lessons);
 
         //Récupération du nombre de Cours d'un utilisateur
-        $historicsUser = count($em->getRepository(Historic::class)->historicsUser($this->getUser()));
+        $historicsUser = $em->getRepository(Historic::class)->historicsUser($this->getUser());
+
+        $nbHistorics = count($historicsUser);
 
         return $this->render('@Cours/index.html.twig',[
-            'historics'=>$historicsUser,
+            'historics'=>$nbHistorics,
             'nbLessons' => $nbLessons
         ]);
     }
