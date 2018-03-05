@@ -48,7 +48,7 @@ class LessonController extends Controller
             $em->persist($lesson);
             $em->flush();
 
-            return $this->redirectToRoute('admin_lesson_show', array('id' => $lesson->getId()));
+            return $this->redirectToRoute('admin_lesson_index');
         }
 
         return $this->render('lesson/new.html.twig', array(

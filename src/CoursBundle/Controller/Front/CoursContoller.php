@@ -101,7 +101,7 @@ class CoursContoller extends Controller
                     $em->persist($historic);
                     $em->flush();
 
-                    return $this->redirectToRoute('home');
+                    return $this->redirectToRoute('courses');
                 }else{
                     $wrong = true;
                 }
