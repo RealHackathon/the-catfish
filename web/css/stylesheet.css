@@ -1,3 +1,26 @@
 h1, h2 {
     text-align: center;
 }
+
+.question {
+    margin-bottom: 10px;
+}
+
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:before, [type="radio"].with-gap:checked+label:after{
+    background-color: #1a237e!important;
+    border: #1a237e!important;
+}
+
+.quizz label {
+    color: white;
+    font-size: 12pt;
+}
+
+[type="radio"]:not(:checked)+label, [type="radio"]:checked+label {
+    display: block!important;
+}
+
+.quizz .card-title{
+    color: white;
+    text-decoration: underline;
+}

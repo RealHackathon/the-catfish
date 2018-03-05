@@ -16,30 +16,26 @@
             </iframe>
         </div>
     </div>
+    {% if wrong %}<h2>Il y a une erreur !</h2>{% endif %}
     <div class="row">
         <div class="col offset-m3 m6">
-            <div class="card indigo">
-                <div class="card-content white-text">
+            <div class="card indigo quizz">
+                <div class="card-content                                                                                                                                        ">
                     <span class="card-title">Quizz</span>
-                    <form action="" method="get">
-                        {% for question in lesson.questions %}
-                                <p>{{ question.name | capitalize}}</p>
-                                {% for answer in question.answers %}
-                                    <input type="radio" id="{{ answer.id }}"
-                                           name="{{ question.id }}" value="{{ answer.correct }}"
-                                           required="required">
-                                    <label for="{{ answer.id }}">{{ answer.name | capitalize}}</label><br>
-                                {% endfor %}
-                            <br>
-                        {% endfor %}
+                    {{ form_start(form) }}
+
+                    {{ form_widget(form) }}
                     <div class="button">
-                        <button type="submit" class="orange">Envoyer votre reponse</button>
+                    <button type="submit" class="waves-effect waves-light btn indigo darken-4">Envoyer</button>
                     </div>
+
+                    {{ form_end(form) }}
                 </div>
-                </form>
             </div>
         </div>
     </div>
-    {% if ok %}<h1>Bien Joué</h1>{% endif %}
+    {#{{ form_start(form) }}#}
+    {#{{ form_widget(form) }}#}
+    {#{{ form_end(form) }}#}
 
 {% endblock %}

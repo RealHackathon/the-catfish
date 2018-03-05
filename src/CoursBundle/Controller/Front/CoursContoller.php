@@ -9,6 +9,7 @@
 namespace CoursBundle\Controller\Front;
 
 
+use CoursBundle\Entity\Answer;
 use CoursBundle\Entity\Historic;
 use CoursBundle\Entity\Lesson;
 use CoursBundle\Entity\Question;
@@ -34,9 +35,9 @@ class CoursContoller extends Controller
         $historicsUser = $em->getRepository(Historic::class)->historicsUser($this->getUser());
 
 
-        return $this->render('@Cours/courses.html.twig',[
-            'lessons'=>$lessons,
-            'historics'=>$historicsUser
+        return $this->render('@Cours/courses.html.twig', [
+            'lessons' => $lessons,
+            'historics' => $historicsUser
         ]);
     }
 
@@ -48,35 +49,69 @@ class CoursContoller extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $ok = '';
+        $wrong = false;
 
         $profil = $this->getUser();
 
+        $questions = $em->getRepository(Question::class)->findByLesson($lesson->getId());
 
-        if ($_GET != null) {
+        $form = $this->createForm(QuizzType::class);
 
-            $answers = $_GET;
+        foreach ($questions as $question){
+            $answers = $em->getRepository(Answer::class)->findByQuestion($question->getId());
+            $choices = [];
+            foreach ($answers as $answer){
+                $choices += [ucfirst($answer->getName())=>$answer->getCorrect()];
+            }
+            $form->add($question->getId(),  ChoiceType::class, [
+                'choices'=>$choices,
+                'multiple'=>false,
+                'expanded'=>true,
+                'label'=>ucfirst($question->getName()),
+                'attr'=>[
+                    'class'=>'question'
+                ]
+            ]);
+        }
 
-            if (count($answers) === array_sum($answers)){
-                $ok = true;
 
-                $historic = new Historic();
 
-                $historic->setDate(new \DateTime());
-                $historic->setUser($profil);
-                $historic->setLesson($lesson);
+        $form->handleRequest($request);
 
-                $em->persist($historic);
-                $em->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $data = $form->getData();
+
+            if ($data != null) {
+
+                if (count($data) === array_sum($data)) {
+
+                    $historic = new Historic();
+
+                    $historic->setDate(new \DateTime());
+                    $historic->setUser($profil);
+                    $historic->setLesson($lesson);
+
+                    $em->persist($historic);
+                    $em->flush();
+
+                    return $this->redirectToRoute('home');
+                }else{
+                    $wrong = true;
+                }
 
             }
-
         }
+
+
+
+
 
 
         return $this->render('@Cours/cours.html.twig', [
             'lesson' => $lesson,
-            'ok' => $ok
+            'form' => $form->createView(),
+            'wrong' => $wrong
         ]);
     }
 }

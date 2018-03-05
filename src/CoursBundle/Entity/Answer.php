@@ -36,7 +36,7 @@ class Answer
     private $correct;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Question", inversedBy="answers")
+     * @ORM\ManyToOne(targetEntity="Question", inversedBy="answers", fetch="EAGER")
      */
     private $question;
 

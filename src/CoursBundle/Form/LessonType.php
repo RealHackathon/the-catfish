@@ -2,7 +2,9 @@
 
 namespace CoursBundle\Form;
 
+use CoursBundle\Entity\Question;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,7 +25,18 @@ class LessonType extends AbstractType
                 'attr' => [
                     'placeholder' => 'K9M7iWWViA8'
                 ]
-            ]);
+            ])
+//            ->add('questions', CollectionType::class, array(
+//                'entry_type' => QuestionType::class,
+//                'allow_add' => true,
+//                'allow_delete' => true,
+//                'prototype' => true,
+//                'by_reference' => false,
+//                'entry_options' => array(
+//                    'attr' => array('class' => 'browser-default'),
+//                )
+//            ))
+        ;
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace CoursBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,7 +37,7 @@ class Lesson
     private $urlytb;
 
     /**
-     * @ORM\OneToMany(targetEntity="Question", mappedBy="lesson")
+     * @ORM\OneToMany(targetEntity="Question", mappedBy="lesson", cascade="all", orphanRemoval=true)
      */
     private $questions;
 
@@ -44,6 +45,40 @@ class Lesson
      * @ORM\OneToMany(targetEntity="Historic", mappedBy="lesson")
      */
     private $historics;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->questions = new ArrayCollection();
+    }
+
+    /**
+     * Add question
+     *
+     * @param Question $question
+     *
+     * @return Lesson
+     */
+    public function addQuestion(Question $question)
+    {
+        $this->questions[] = $question;
+        $question->setLesson($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove question
+     *
+     * @param Question $question
+     */
+    public function removeQuestion(Question $question)
+    {
+        $this->questions->removeElement($question);
+    }
+
 
     /**
      * @return mixed

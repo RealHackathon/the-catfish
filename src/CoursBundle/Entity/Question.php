@@ -2,6 +2,7 @@
 
 namespace CoursBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,14 +30,48 @@ class Question
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Answer", mappedBy="question")
+     * @ORM\OneToMany(targetEntity="Answer", mappedBy="question", cascade="all", orphanRemoval=true)
      */
     private $answers;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="questions")
+     * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="questions", fetch="EAGER")
      */
     private $lesson;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->answers = new ArrayCollection();
+    }
+
+    /**
+     * Add answer
+     *
+     * @param Answer $answer
+     *
+     * @return Question
+     */
+    public function addAnswer(Answer $answer)
+    {
+        $this->answers[] = $answer;
+        $answer->setQuestion($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove answer
+     *
+     * @param Answer $answer
+     */
+    public function removeAnswer(Answer $answer)
+    {
+        $this->answers->removeElement($answer);
+    }
+
 
     /**
      * @return mixed
