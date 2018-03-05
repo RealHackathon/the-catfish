@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col s12 offset-m1 m10">
+            <h1>Espace administration</h1>
+            <h2>Liste des cours</h2>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>ID Youtube</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for lesson in lessons %}
+                    <tr>
+                        <td><a href="{{ path('admin_lesson_show', { 'id': lesson.id }) }}">{{ lesson.id }}</a></td>
+                        <td>{{ lesson.name }}</td>
+                        <td>{{ lesson.urlytb }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_lesson_show', { 'id': lesson.id }) }}">voir</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_lesson_edit', { 'id': lesson.id }) }}">éditer</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_question_index', { 'id': lesson.id }) }}">questions</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <ul>
+                <li>
+                    <a href="{{ path('admin_lesson_new') }}">Créer un nouveau cours</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

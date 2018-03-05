@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <h1 class="center">Watch & Answer</h1>
+    </div>
+    <div class="row">
+        <div class="col s12 m4 offset-m4">
+            <div class="card indigo">
+                {% if app.user %}
+                <div class="card-content white-text">
+                    <span class="card-title">Bienvenue {{ app.user.username }}</span>
+                    <p>Actuellement, vous avez terminé {{ historics }}/{{ nbLessons }} cours</p>
+                </div>
+                <div class="card-action">
+                        <a class="center" href="{{ path('courses') }}">Accès aux cours</a>
+                </div>
+                {% else %}
+                    <div class="card-content white-text">
+                        <span class="card-title">Bienvenue</span>
+                        <p>Veuillez-vous identifier pour accéder aux cours en ligne et son quizz</p>
+                    </div>
+                    <div class="card-action">
+                            <a class="center" href="{{ path('fos_user_security_login') }}">Se connecter</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

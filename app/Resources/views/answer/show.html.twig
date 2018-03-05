@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col s12 offset-m1 m10">
+            <h1>Réponse</h1>
+
+            <table>
+                <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ answer.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ answer.name }}</td>
+                </tr>
+                <tr>
+                    <th>Correct</th>
+                    <td>{% if answer.correct %}Oui{% else %}Non{% endif %}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <ul>
+                <li>
+                    <a href="{{ path('admin_answer_index', {'id': answer.question.id}) }}">Retour aux réponses</a>
+                </li>
+                <li>
+                    <a href="{{ path('admin_answer_edit', { 'id': answer.id }) }}">Editer</a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Supprimer">
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

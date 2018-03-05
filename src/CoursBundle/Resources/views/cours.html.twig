@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <h1>{{ lesson.name }}</h1>
+    </div>
+    <div class="row">
+        <p class="center">Visualisez la vidéo et répondez au quizz pour valider votre cours.</p>
+    </div>
+    <div class="row">
+        <div class="center">
+            <iframe id="ytplayer" type="text/html" width="640" height="360"
+                    src="http://www.youtube.com/embed/{{ lesson.urlytb }}?autoplay=0&origin=http://example.com"
+                    frameborder="0">
+
+            </iframe>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col offset-m3 m6">
+            <div class="card indigo">
+                <div class="card-content white-text">
+                    <span class="card-title">Quizz</span>
+                    <form action="" method="get">
+                        {% for question in lesson.questions %}
+                                <p>{{ question.name | capitalize}}</p>
+                                {% for answer in question.answers %}
+                                    <input type="radio" id="{{ answer.id }}"
+                                           name="{{ question.id }}" value="{{ answer.correct }}"
+                                           required="required">
+                                    <label for="{{ answer.id }}">{{ answer.name | capitalize}}</label><br>
+                                {% endfor %}
+                            <br>
+                        {% endfor %}
+                    <div class="button">
+                        <button type="submit" class="orange">Envoyer votre reponse</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% if ok %}<h1>Bien Joué</h1>{% endif %}
+
+{% endblock %}
