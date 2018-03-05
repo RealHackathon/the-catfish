@@ -16,8 +16,10 @@ class HomeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        //Récupération du nombre de Cours
         $nbLessons = count($em->getRepository(Lesson::class)->findAll());
 
+        //Récupération du nombre de Cours d'un utilisateur
         $historicsUser = count($em->getRepository(Historic::class)->historicsUser($this->getUser()));
 
         return $this->render('@Cours/index.html.twig',[

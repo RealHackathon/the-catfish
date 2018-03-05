@@ -30,8 +30,10 @@ class CoursContoller extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        //Récupération des Cours
         $lessons = $em->getRepository(Lesson::class)->findAll();
 
+        //Récupération de l'historique d'un utilisateur
         $historicsUser = $em->getRepository(Historic::class)->historicsUser($this->getUser());
 
 
@@ -49,12 +51,15 @@ class CoursContoller extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        //Variable message de mauvaise reponse
         $wrong = false;
 
         $profil = $this->getUser();
 
+        //Récupération des questions du Cours
         $questions = $em->getRepository(Question::class)->findByLesson($lesson->getId());
 
+        //Création du formulaire dynamique du quizz
         $form = $this->createForm(QuizzType::class);
 
         foreach ($questions as $question){
@@ -86,6 +91,7 @@ class CoursContoller extends Controller
 
                 if (count($data) === array_sum($data)) {
 
+                    //Enregistrement dans l'historique
                     $historic = new Historic();
 
                     $historic->setDate(new \DateTime());

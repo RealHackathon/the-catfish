@@ -8,23 +8,24 @@
         <p class="center">Visualisez la vidéo et répondez au quizz pour valider votre cours.</p>
     </div>
     <div class="row">
+        <!-- API Youtube -->
         <div class="center">
-            <iframe id="ytplayer" type="text/html" width="640" height="360"
-                    src="http://www.youtube.com/embed/{{ lesson.urlytb }}?autoplay=0&origin=http://example.com"
-                    frameborder="0">
-
-            </iframe>
+            <div id="ytplayer"></div>
         </div>
     </div>
-    {% if wrong %}<h2>Il y a une erreur !</h2>{% endif %}
+    {% if wrong %}
+        <!-- Mauvaise réponses dans le formulaire -->
+        <h2>Il y a une erreur !</h2>{% endif %}
     <div class="row">
         <div class="col offset-m3 m6">
             <div class="card indigo quizz">
                 <div class="card-content                                                                                                                                        ">
                     <span class="card-title">Quizz</span>
+                    <!-- Formulaire quizz -->
                     {{ form_start(form) }}
 
                     {{ form_widget(form) }}
+
                     <div class="button">
                     <button type="submit" class="waves-effect waves-light btn indigo darken-4">Envoyer</button>
                     </div>
@@ -34,8 +35,25 @@
             </div>
         </div>
     </div>
-    {#{{ form_start(form) }}#}
-    {#{{ form_widget(form) }}#}
-    {#{{ form_end(form) }}#}
+{% endblock %}
+{%  block javascripts %}
+{{ parent() }}
+    <script>
+        // Load the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+        // Replace the 'ytplayer' element with an <iframe> and
+        // YouTube player after the API code downloads.
+        var player;
+        function onYouTubePlayerAPIReady() {
+            player = new YT.Player('ytplayer', {
+                height: '360',
+                width: '640',
+                videoId: '{{ lesson.urlytb }}'
+            });
+        }
+    </script>
 {% endblock %}
