@@ -28,3 +28,11 @@ h1, h2 {
 .quizz {
     display: none;
 }
+
+.boxFOS {
+    margin-top: 100px;
+}
+
+.boxFOS input[type="submit"] {
+    background-color: #1a237e;
+}
