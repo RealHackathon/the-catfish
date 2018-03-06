@@ -21,20 +21,17 @@
                 </tr>
                 </tbody>
             </table>
-
-            <ul>
-                <li>
-                    <a href="{{ path('admin_lesson_index') }}">Retour aux cours</a>
-                </li>
-                <li>
-                    <a href="{{ path('admin_lesson_edit', { 'id': lesson.id }) }}">Editer</a>
-                </li>
-                <li>
+                <p>
+                    <a href="{{ path('admin_lesson_index') }}"><i class="material-icons left">ondemand_video</i>Retour aux cours</a>
+                </p>
+                <p>
+                    <a href="{{ path('admin_lesson_edit', { 'id': lesson.id }) }}"><i class="material-icons left">build</i>Editer</a>
+                </p>
+                <p>
                     {{ form_start(delete_form) }}
                     <input type="submit" value="Supprimer">
                     {{ form_end(delete_form) }}
-                </li>
-            </ul>
+                </p>
         </div>
     </div>
 

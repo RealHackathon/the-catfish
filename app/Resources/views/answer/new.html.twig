@@ -7,14 +7,12 @@
 
             {{ form_start(form) }}
             {{ form_widget(form) }}
-            <input type="submit" value="Créer" />
+            <input type="submit" value="Créer"/>
             {{ form_end(form) }}
-
-            <ul>
-                <li>
-                    <a href="{{ path('admin_answer_index', { 'id': question.id }) }}">Retour aux réponses</a>
-                </li>
-            </ul>
+            <p>
+                <a href="{{ path('admin_answer_index', { 'id': question.id }) }}"><i class="material-icons left">question_answer</i>Retour
+                    aux réponses</a>
+            </p>
         </div>
     </div>
 

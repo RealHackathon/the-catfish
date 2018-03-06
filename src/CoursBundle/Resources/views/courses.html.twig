@@ -10,13 +10,13 @@
             <div class="col offset-s1 s10 l6 offset-l3">
                 <div class="card indigo">
                     <div class="card-content white-text">
-                        <span class="card-title">{{ lesson.name }}</span>
+                        <span class="card-title">{{ lesson.name | capitalize }}</span>
                         {% for historic in historics %}
                             {% if lesson.id == historic.id %}<p class="chip green">Terminé</p>{% endif %}
                         {% endfor %}
                     </div>
                     <div class="card-action">
-                        <a href="{{ path('cours', { 'name': lesson.name }) }}">Accès au cours</a>
+                        <a href="{{ path('cours', { 'name': lesson.name }) }}"><i class="material-icons left">ondemand_video</i>Accès au cours</a>
                     </div>
                 </div>
             </div>

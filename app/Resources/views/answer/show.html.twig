@@ -22,19 +22,17 @@
                 </tbody>
             </table>
 
-            <ul>
-                <li>
-                    <a href="{{ path('admin_answer_index', {'id': answer.question.id}) }}">Retour aux réponses</a>
-                </li>
-                <li>
-                    <a href="{{ path('admin_answer_edit', { 'id': answer.id }) }}">Editer</a>
-                </li>
-                <li>
+                <p>
+                    <a href="{{ path('admin_answer_index', {'id': answer.question.id}) }}"><i class="material-icons left">question_answer</i>Retour aux réponses</a>
+                </p>
+                <p>
+                    <a href="{{ path('admin_answer_edit', { 'id': answer.id }) }}"><i class="material-icons left">build</i>Editer</a>
+                </p>
+                <p>
                     {{ form_start(delete_form) }}
                     <input type="submit" value="Supprimer">
                     {{ form_end(delete_form) }}
-                </li>
-            </ul>
+                </p>
         </div>
     </div>
 

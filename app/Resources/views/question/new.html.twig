@@ -10,11 +10,9 @@
             <input type="submit" value="Créer" />
             {{ form_end(form) }}
 
-            <ul>
-                <li>
-                    <a href="{{ path('admin_question_index', { 'id': lesson.id}) }}">Retour aux questions</a>
-                </li>
-            </ul>
+                <p>
+                    <a href="{{ path('admin_question_index', { 'id': lesson.id}) }}"><i class="material-icons left">live_help</i>Retour aux questions</a>
+                </p>
         </div>
     </div>
 

@@ -10,16 +10,14 @@
             <input type="submit" value="Editer" />
             {{ form_end(edit_form) }}
 
-            <ul>
-                <li>
-                    <a href="{{ path('admin_answer_index', {'id': answer.question.id}) }}">Retour aux réponses</a>
-                </li>
-                <li>
+                <p>
+                    <a href="{{ path('admin_answer_index', {'id': answer.question.id}) }}"><i class="material-icons left">question_answer</i>Retour aux réponses</a>
+                </p>
+                <p>
                     {{ form_start(delete_form) }}
                     <input type="submit" value="Supprimer">
                     {{ form_end(delete_form) }}
-                </li>
-            </ul>
+                </p>
         </div>
     </div>
 

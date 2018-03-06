@@ -15,12 +15,13 @@
     </div>
     {% if wrong %}
         <!-- Mauvaise réponses dans le formulaire -->
-        <h2>Il y a une erreur !</h2>{% endif %}
+        <h2>Il y a une erreur !</h2>
+    {% endif %}
     <div class="row">
         <div class="col offset-s1 s10 offset-l3 l6">
             <div class="card indigo quizz" id="quizz">
                 <div class="card-content                                                                                                                                        ">
-                    <span class="card-title">Quizz</span>
+                    <span class="card-title"><i class="material-icons left">format_list_bulleted</i> Quizz</span>
                     <!-- Formulaire quizz -->
                     {{ form_start(form) }}
 

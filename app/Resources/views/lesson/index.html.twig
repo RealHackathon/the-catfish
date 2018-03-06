@@ -22,28 +22,24 @@
                         <td>{{ lesson.name }}</td>
                         <td>{{ lesson.urlytb }}</td>
                         <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('admin_lesson_show', { 'id': lesson.id }) }}">voir</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('admin_lesson_edit', { 'id': lesson.id }) }}">éditer</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('admin_question_index', { 'id': lesson.id }) }}">questions</a>
-                                </li>
-                            </ul>
+                                <p>
+                                    <a href="{{ path('admin_lesson_show', { 'id': lesson.id }) }}"><i class="material-icons left">remove_red_eye</i>Voir</a>
+                                </p>
+                                <p>
+                                    <a href="{{ path('admin_lesson_edit', { 'id': lesson.id }) }}"><i class="material-icons left">build</i>Editer</a>
+                                </p>
+                                <p>
+                                    <a href="{{ path('admin_question_index', { 'id': lesson.id }) }}"><i class="material-icons left">live_help</i>Questions</a>
+                                </p>
                         </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
 
-            <ul>
-                <li>
-                    <a href="{{ path('admin_lesson_new') }}">Créer un nouveau cours</a>
-                </li>
-            </ul>
+                <p>
+                    <a href="{{ path('admin_lesson_new') }}"><i class="material-icons left">add_circle_outline</i>Créer un nouveau cours</a>
+                </p>
         </div>
     </div>
 

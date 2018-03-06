@@ -10,16 +10,14 @@
             <input type="submit" value="Editer" />
             {{ form_end(edit_form) }}
 
-            <ul>
-                <li>
-                    <a href="{{ path('admin_lesson_index') }}">Retour aux cours</a>
-                </li>
-                <li>
+                <p>
+                    <a href="{{ path('admin_lesson_index') }}"><i class="material-icons left">ondemand_video</i>Retour aux cours</a>
+                </p>
+                <p>
                     {{ form_start(delete_form) }}
                     <input type="submit" value="Suprimer">
                     {{ form_end(delete_form) }}
-                </li>
-            </ul>
+                </p>
         </div>
     </div>
 

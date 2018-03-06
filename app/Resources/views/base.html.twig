@@ -15,27 +15,27 @@
 <body>
 <nav class="indigo">
     <div class="nav-wrapper">
-        <a href="{{ path('home') }}" class="brand-logo">Watch & Answer</a>
+        <a href="{{ path('home') }}" class="brand-logo"><i class="material-icons left">ondemand_video</i>Watch & Answer</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             {% if app.user %}
                 {% if app.user.hasRole('ROLE_ADMIN') %}
-                    <li><a href="{{ path('admin_lesson_index') }}">Admin</a></li>
+                    <li><a href="{{ path('admin_lesson_index') }}"><i class="material-icons left">border_color</i>Admin</a></li>
                 {% endif %}
             {% endif %}
-            <li><a href="{{ path('courses') }}">Cours</a></li>
+            <li><a href="{{ path('courses') }}"><i class="material-icons left">ondemand_video</i>Cours</a></li>
             <li>
                 {% if app.user %}
-                    <a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a>
+                    <a href="{{ path('fos_user_profile_show') }}"><i class="material-icons left">person</i>{{ app.user.username }}</a>
                 {% else %}
-                    <a href="{{ path('fos_user_security_login') }}">Login</a>
+                    <a href="{{ path('fos_user_security_login') }}"><i class="material-icons left">person_outline</i>Login</a>
                 {% endif %}
             </li>
             <li>
                 {% if app.user %}
-                    <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+                    <a href="{{ path('fos_user_security_logout') }}"><i class="material-icons">exit_to_app</i></a>
                 {% else %}
-                    <a href="{{ path('fos_user_registration_register') }}">S'inscrire</a>
+                    <a href="{{ path('fos_user_registration_register') }}"><i class="material-icons left">border_color</i>S'inscrire</a>
                 {% endif %}
             </li>
 
@@ -43,14 +43,24 @@
         <ul class="side-nav" id="mobile-demo">
             {% if app.user %}
                 {% if app.user.hasRole('ROLE_ADMIN') %}
-                    <li><a href="{{ path('admin_lesson_index') }}">Admin</a></li>
+                    <li><a href="{{ path('admin_lesson_index') }}"><i class="material-icons left">border_color</i>Admin</a></li>
                 {% endif %}
             {% endif %}
-            <li><a href="{{ path('courses') }}">Cours</a></li>
+            <li><a href="{{ path('courses') }}"><i class="material-icons left">ondemand_video</i>Cours</a></li>
             <li>
-                <a href="{{ path('fos_user_security_login') }}">{% if app.user %}{{ app.user.username }}{% else %}Login{% endif %}</a>
+                {% if app.user %}
+                    <a href="{{ path('fos_user_profile_show') }}"><i class="material-icons left">person</i>{{ app.user.username }}</a>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}"><i class="material-icons left">person_outline</i>Login</a>
+                {% endif %}
             </li>
-            <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            <li>
+                {% if app.user %}
+                    <a href="{{ path('fos_user_security_logout') }}"><i class="material-icons">exit_to_app</i></a>
+                {% else %}
+                    <a href="{{ path('fos_user_registration_register') }}"><i class="material-icons left">border_color</i>S'inscrire</a>
+                {% endif %}
+            </li>
         </ul>
     </div>
 </nav>
