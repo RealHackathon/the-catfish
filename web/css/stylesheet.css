@@ -1,5 +1,5 @@
 body {
-    background-image: url("../image/black.jpg");
+    background-image: url("../image/PoPCorn.jpg");
     background-size: cover;
 }
 
@@ -43,4 +43,32 @@ h1, h2 {
 
 .boxFOS input[type="submit"] {
     background-color: #1a237e;
+}
+
+#logoBot img{
+    max-height: 300px;
+}
+
+#player{
+    background-color:rgba(0,0,0,0.8);
+    margin:10px;
+}
+#player p{
+
+    color: white;
+    font-size:26px;
+    font-family: 'Roboto Slab', serif;
+}
+audio{
+    color:red;
+}
+
+#blockImg{
+    margin:auto;
+    text-align: center;
+}
+#logoBot{
+    background-color:black;
+    display:inline-block;
+    translate:
 }

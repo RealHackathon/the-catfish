@@ -14,6 +14,7 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
+        /*
         $em = $this->getDoctrine()->getManager();
 
         //Récupération du nombre de Cours
@@ -29,6 +30,25 @@ class HomeController extends Controller
         return $this->render('@Cours/index.html.twig',[
             'historics'=>$nbHistorics,
             'nbLessons' => $nbLessons
-        ]);
+        ]);*/
+
+        $data=array(
+            0 => array(
+                'audio'=> 'audio/diner.mp3',
+                'dialogId' => 'f42ce196-87cb-44f3-a486-10abe75eb32e',
+                        ),
+            1 => array(
+                'audio'=> 'audio/retour.mp3',
+                'dialogId' => '6ee28330-a24d-48aa-a48d-ef8ed3570291',
+            ),
+            2 => array(
+                'audio'=> 'audio/terminator.mp3',
+                'dialogId' => 'f42ce196-87cb-44f3-a486-10abe75eb32e',
+            )
+        );
+
+        $game = $data[rand(0,2)];
+
+        return $this->render('index.html.twig',['game'=>$game]);
     }
 }

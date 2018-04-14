@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Watch & Answer{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}"/>
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+              rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<div class="container-fluid">
+    {% block body %}
+        <div id="blockImg">
+            <div class="center" id="logoBot">
+                <img src="image/logo.png" >
+            </div>
+        </div>
+        <div id="player" class="center">
+           <p>Cliquez sur le bouton pour lancer le son</p>
+            <audio controls="controls">
+                <source src="{{ game.audio }}" type="audio/mp3" />
+                Votre navigateur n'est pas compatible
+            </audio>
+
+        </div>
+
+
+        <div id="dialogFlow" class="center">
+            <iframe
+                    width="350"
+                    height="430"
+                    src="https://console.dialogflow.com/api-client/demo/embedded/{{ game.dialogId }}">
+            </iframe>
+        </div>
+
+    {% endblock %}
+</div>
+{% block javascripts %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}
+</body>
+</html>
