@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Citation
+ * KeyWord
  *
- * @ORM\Table(name="citation")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CitationRepository")
+ * @ORM\Table(name="key_word")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\KeyWordRepository")
  */
-class Citation
+class KeyWord
 {
     /**
      * @var int
@@ -24,9 +24,9 @@ class Citation
     /**
      * @var string
      *
-     * @ORM\Column(name="citation", type="text")
+     * @ORM\Column(name="keyWord", type="string", length=255)
      */
-    private $citation;
+    private $keyWord;
 
 
     /**
@@ -40,27 +40,27 @@ class Citation
     }
 
     /**
-     * Set citation
+     * Set keyWord
      *
-     * @param string $citation
+     * @param string $keyWord
      *
-     * @return Citation
+     * @return KeyWord
      */
-    public function setCitation($citation)
+    public function setKeyWord($keyWord)
     {
-        $this->citation = $citation;
+        $this->keyWord = $keyWord;
 
         return $this;
     }
 
     /**
-     * Get citation
+     * Get keyWord
      *
      * @return string
      */
-    public function getCitation()
+    public function getKeyWord()
     {
-        return $this->citation;
+        return $this->keyWord;
     }
 }
 

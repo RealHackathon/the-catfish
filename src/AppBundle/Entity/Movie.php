@@ -2,49 +2,72 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Movie
+ *
+ * @ORM\Table(name="movie")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\MovieRepository")
  */
 class Movie
 {
     /**
-     * @var integer
-     */
-    private $apiid;
-
-    /**
-     * @var string
-     */
-    private $title;
-
-    /**
-     * @var integer
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="apiId", type="integer")
+     */
+    private $apiId;
 
     /**
-     * Set apiid
+     * @var string
      *
-     * @param integer $apiid
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set apiId
+     *
+     * @param integer $apiId
      *
      * @return Movie
      */
-    public function setApiid($apiid)
+    public function setApiId($apiId)
     {
-        $this->apiid = $apiid;
+        $this->apiId = $apiId;
 
         return $this;
     }
 
     /**
-     * Get apiid
+     * Get apiId
      *
-     * @return integer
+     * @return int
      */
-    public function getApiid()
+    public function getApiId()
     {
-        return $this->apiid;
+        return $this->apiId;
     }
 
     /**
@@ -69,16 +92,6 @@ class Movie
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }
 
