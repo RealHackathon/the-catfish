@@ -35,6 +35,29 @@ class Movie
      */
     private $title;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="KeyWord")
+     */
+    private $keyWords;
+
+    /**
+     * @return mixed
+     */
+    public function getKeyWords()
+    {
+        return $this->keyWords;
+    }
+
+    /**
+     * @param mixed $keyWords
+     * @return Movie
+     */
+    public function setKeyWords($keyWords)
+    {
+        $this->keyWords = $keyWords;
+        return $this;
+    }
+
 
     /**
      * Get id

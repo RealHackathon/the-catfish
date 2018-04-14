@@ -28,6 +28,29 @@ class KeyWord
      */
     private $keyWord;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Movie")
+     */
+    private $movies;
+
+    /**
+     * @return mixed
+     */
+    public function getMovies()
+    {
+        return $this->movies;
+    }
+
+    /**
+     * @param mixed $movies
+     * @return KeyWord
+     */
+    public function setMovies($movies)
+    {
+        $this->movies = $movies;
+        return $this;
+    }
+
 
     /**
      * Get id

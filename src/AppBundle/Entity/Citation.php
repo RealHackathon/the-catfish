@@ -28,6 +28,29 @@ class Citation
      */
     private $citation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Movie")
+     */
+    private $movie;
+
+    /**
+     * @return mixed
+     */
+    public function getMovie()
+    {
+        return $this->movie;
+    }
+
+    /**
+     * @param mixed $movie
+     * @return Citation
+     */
+    public function setMovie($movie)
+    {
+        $this->movie = $movie;
+        return $this;
+    }
+
 
     /**
      * Get id
